@@ -1,6 +1,9 @@
 package com.erm.erm_debug;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.CompoundButton;
@@ -9,6 +12,9 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -48,6 +54,18 @@ public class SamplesManager extends ActionBarActivity {
 
     public void makeMatch(List coordenadas) {
         matchedSamples = coordenadas;
+    }
+
+    public void readSamplesFile(AssetManager assets) throws IOException {
+        //File sdcard = Environment.getExternalStorageDirectory();
+        //System.out.println(String.valueOf(sdcard));
+        InputStream is = assets.open("samples.txt");
+        int size = is.available();
+        byte[] buffer =  new byte[size];
+        is.read(buffer);
+        is.close();
+        String text = new String(buffer);
+        System.out.println(text);
     }
 
     /*String bowlingJson() {

@@ -3,6 +3,7 @@ package com.erm.erm_debug;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -80,6 +81,12 @@ public class GPS extends ActionBarActivity implements LocationListener {
 
         samplesManager = new SamplesManager();
         samplesManager.defaultList();
+        try {
+            AssetManager assets = getAssets();
+            samplesManager.readSamplesFile(assets);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
