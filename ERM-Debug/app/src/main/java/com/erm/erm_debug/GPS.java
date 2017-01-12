@@ -53,6 +53,9 @@ public class GPS extends ActionBarActivity implements LocationListener {
     List<Map<String, String>> locationList = new ArrayList<>();
     public static final int MY_PERMISSIONS = 0;
     private Switch mySwitch;
+    private TextView samplesSize;
+    private TextView locationSize;
+    private TextView matchedSize;
     private TextView lat;
     private TextView lng;
     private TextView txtGps;
@@ -78,6 +81,10 @@ public class GPS extends ActionBarActivity implements LocationListener {
         lat = (TextView) findViewById(R.id.lat);
         lng = (TextView) findViewById(R.id.lng);
         datetime = (TextView) findViewById(R.id.datetime);
+
+        locationSize = (TextView) findViewById(R.id.locationsSize);
+        samplesSize = (TextView) findViewById(R.id.SamplesSize);
+        matchedSize = (TextView) findViewById(R.id.MatchedSize);
 
         samplesManager = new SamplesManager();
         samplesManager.defaultList();
@@ -249,7 +256,11 @@ public class GPS extends ActionBarActivity implements LocationListener {
             lng.setText(String.valueOf(location.getLongitude()));
             datetime.setText(formattedDate);
 
+
             System.out.println(locationList.size());
+            locationSize.setText(String.valueOf("cant. coordenadas: " + locationList.size()));
+            samplesSize.setText(String.valueOf("cant. muestras: " + samplesManager.getSizeOfSamples()));
+            matchedSize.setText(String.valueOf("cant. matched: " + samplesManager.getSizeOfMatchedSamples()));
         }
     }
 
@@ -302,6 +313,7 @@ public class GPS extends ActionBarActivity implements LocationListener {
         String json = this.bowlingJson();
         String response = this.post("http://104.236.92.253/api/samples", json);
         System.out.println(response);
+        Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
     }
 
     // Se limpia la lista de coordenadas. en el futuro la idea es eliminar solo las

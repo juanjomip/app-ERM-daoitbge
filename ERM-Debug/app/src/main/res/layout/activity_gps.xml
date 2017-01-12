@@ -67,4 +67,30 @@
         android:layout_below="@+id/datetime"
         android:text="proveedor"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/locationsSize"
+        android:layout_width="100pt"
+        android:layout_height="10pt"
+        android:text="location size"
+        android:layout_below="@+id/proveedor"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="36dp" />
+
+    <TextView
+        android:id="@+id/SamplesSize"
+        android:layout_width="100pt"
+        android:layout_height="10pt"
+        android:text="samples size"
+        android:layout_below="@+id/locationsSize"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/MatchedSize"
+        android:text="matched size"
+        android:layout_width="100pt"
+        android:layout_height="10pt"
+        android:layout_below="@+id/SamplesSize"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
